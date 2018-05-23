@@ -1,0 +1,12 @@
+package com.ghamry.laser;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LaserApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(LaserApplication.class, args);
+    }
+}

@@ -4,28 +4,27 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "FaultTbl", schema="Lasers")
+@Table(name = "fault_tbl", schema="Lasers")
 public class Fault {
 
     private int faultId;
     private String faultName;
     private String faultSolution;
     private Date faultDate;
-    private int laserId;
+    private Laser laser;
 
     public Fault() {}
 
-    public Fault(String faultName, String faultSolution, Date faultDate, int laserId) {
-        super();
+    public Fault(String faultName, String faultSolution, Date faultDate, Laser laser) {
         this.faultName = faultName;
         this.faultSolution = faultSolution;
         this.faultDate = faultDate;
-        this.laserId = laserId;
+        this.laser = laser;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "FaultId")
+    @Column(name = "fault_id")
     public int getFaultId() {
         return faultId;
     }
@@ -35,7 +34,7 @@ public class Fault {
     }
 
     @Basic
-    @Column(name = "FaultName")
+    @Column(name = "fault_name", nullable = false)
     public String getFaultName() {
         return faultName;
     }
@@ -45,7 +44,7 @@ public class Fault {
     }
 
     @Basic
-    @Column(name = "FaultSolution")
+    @Column(name = "fault_solution", nullable = false)
     public String getFaultSolution() {
         return faultSolution;
     }
@@ -55,7 +54,7 @@ public class Fault {
     }
 
     @Basic
-    @Column(name = "FaultDate")
+    @Column(name = "fault_date", nullable = false)
     public Date getFaultDate() {
         return faultDate;
     }
@@ -65,12 +64,13 @@ public class Fault {
     }
 
     @Basic
-    @Column(name = "LaserId")
-    public int getLaserId() {
-        return laserId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "laser_id", nullable = false)
+    public Laser getLaser() {
+        return laser;
     }
 
-    public void setLaserId(int laserId) {
-        this.laserId = laserId;
+    public void setLaser(Laser laser) {
+        this.laser = laser;
     }
 }

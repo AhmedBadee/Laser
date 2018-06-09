@@ -20,17 +20,14 @@ public class LaserService {
     }
 
     public List<Laser> getAllLasers() {
-        List<Laser> lasers = new ArrayList<>();
-
-        laserRepository.findAll().forEach(lasers::add);
-        return lasers;
+        return new ArrayList<>(laserRepository.findAll());
     }
 
     public void addLaser(Laser laser) {
         laserRepository.save(laser);
     }
 
-    public Laser getFaultById(int id) {
+    public Laser getLaserById(int id) {
         Optional<Laser> valueReturned = laserRepository.findById(id);
         return valueReturned.orElse(null);
     }
@@ -40,7 +37,7 @@ public class LaserService {
     }
 
     public void deleteLaser(int id) {
-        Laser laser = getFaultById(id);
+        Laser laser = getLaserById(id);
         laserRepository.delete(laser);
     }
 }

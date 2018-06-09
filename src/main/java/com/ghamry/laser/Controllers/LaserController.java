@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class LaserController {
 
     private LaserService laserService;
@@ -23,9 +24,8 @@ public class LaserController {
     }
 
     @RequestMapping("/lasers/{id}")    // Only maps to GET request
-    public Laser getFaultById(@PathVariable int id) {
-        laserService.getFaultById(id);
-        return null;
+    public Laser getLaserById(@PathVariable int id) {
+        return laserService.getLaserById(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/lasers")

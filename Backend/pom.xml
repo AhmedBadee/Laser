@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <name>laser</name>
-    <description></description>
+    <description/>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -52,6 +52,16 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- for not having to restart the server on changing the front-end [1]-->
+        <!-- start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- end -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -64,6 +74,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- for not having to restart the server on changing the front-end [2]-->
+                <!-- start -->
+                <configuration>
+                    <addResources>true</addResources>
+                </configuration>
+                <!-- end -->
             </plugin>
         </plugins>
     </build>
